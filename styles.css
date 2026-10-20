@@ -1,0 +1,211 @@
+:root {
+  --root-white: #f2f5e8;
+  --ink: #1f2a1e;
+  --leaf: #2a553d;
+  --gutter: clamp(1.25rem, 5vw, 4rem);
+  --display: "Bricolage Grotesque", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --text: "Source Serif 4", Georgia, "Times New Roman", serif;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--root-white);
+  color: var(--ink);
+  font-family: var(--text);
+  font-size: clamp(1.05rem, 1rem + 0.3vw, 1.25rem);
+  line-height: 1.7;
+  font-optical-sizing: auto;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2 {
+  margin: 0;
+  font-family: var(--display);
+  font-weight: 800;
+  font-stretch: 85%;
+  letter-spacing: -0.03em;
+  line-height: 0.95;
+  text-wrap: balance;
+}
+
+p {
+  margin: 0;
+}
+
+a:focus-visible {
+  outline: 3px solid currentColor;
+  outline-offset: 4px;
+}
+
+/* Hero: the leek, sliced crosswise */
+
+.hero {
+  display: grid;
+  grid-template-columns: minmax(0, 6fr) minmax(0, 5fr);
+  gap: 2rem clamp(2rem, 6vw, 5rem);
+  align-items: center;
+  max-width: 78rem;
+  margin: 0 auto;
+  padding: clamp(2.5rem, 7vw, 5rem) var(--gutter) clamp(3rem, 8vw, 6rem);
+}
+
+.hero__site {
+  margin-bottom: clamp(2rem, 6vw, 4rem);
+  font-family: var(--display);
+  font-weight: 600;
+  font-size: 1.05rem;
+  letter-spacing: -0.01em;
+  color: var(--leaf);
+}
+
+.hero h1 {
+  font-size: clamp(3.4rem, 10vw, 8rem);
+  color: var(--leaf);
+}
+
+.hero__lede {
+  max-width: 28rem;
+  margin-top: 1.5rem;
+  font-size: 1.15em;
+  line-height: 1.55;
+}
+
+.hero__link {
+  display: inline-block;
+  margin-top: 1.75rem;
+  font-family: var(--display);
+  font-weight: 600;
+  color: var(--leaf);
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.3em;
+}
+
+.hero__link:hover {
+  text-decoration-thickness: 4px;
+}
+
+.hero__figure {
+  margin: 0;
+}
+
+.rings {
+  display: block;
+  width: 100%;
+  max-width: 30rem;
+  height: auto;
+  margin-inline: auto;
+}
+
+.rings circle {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 0;
+  animation: draw-ring 1s cubic-bezier(0.5, 0, 0.2, 1) both;
+  animation-delay: calc(var(--i) * 0.11s);
+}
+
+@keyframes draw-ring {
+  from {
+    stroke-dashoffset: 1;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.hero__figure figcaption {
+  max-width: 30rem;
+  margin: 1rem auto 0;
+  font-size: 0.85em;
+  font-style: italic;
+  line-height: 1.5;
+  opacity: 0.8;
+}
+
+/* The page is the leek: pale at the root end, deep green at the leaves */
+
+.thing {
+  background: var(--bg);
+  color: var(--fg);
+  padding: clamp(3.5rem, 9vw, 7rem) var(--gutter);
+}
+
+.thing__inner {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 4fr);
+  gap: 1.5rem clamp(2rem, 6vw, 5rem);
+  align-items: start;
+  max-width: 78rem;
+  margin: 0 auto;
+}
+
+.thing h2 {
+  font-size: clamp(2.5rem, 6.5vw, 5.25rem);
+}
+
+.thing p {
+  max-width: 34rem;
+  padding-top: 0.35em;
+}
+
+.thing em {
+  font-style: italic;
+}
+
+main > .thing:nth-child(1) { --bg: #f2f5e8; --fg: #1f2a1e; }
+main > .thing:nth-child(2) { --bg: #e6efcf; --fg: #1f2a1e; }
+main > .thing:nth-child(3) { --bg: #d6e6b3; --fg: #1f2a1e; }
+main > .thing:nth-child(4) { --bg: #c0db96; --fg: #1a2619; }
+main > .thing:nth-child(5) { --bg: #a3cb82; --fg: #162116; }
+main > .thing:nth-child(6) { --bg: #6ba574; --fg: #101a12; }
+main > .thing:nth-child(7) { --bg: #2f6b55; --fg: #f2f5e8; }
+main > .thing:nth-child(8) { --bg: #1f4a3b; --fg: #f2f5e8; }
+main > .thing:nth-child(9) { --bg: #14332a; --fg: #f2f5e8; }
+
+.footer {
+  padding: 2rem var(--gutter) 3rem;
+  background: #0f261f;
+  color: #cfe0c0;
+  font-size: 0.9em;
+}
+
+.footer p {
+  max-width: 78rem;
+  margin: 0 auto;
+}
+
+@media (max-width: 52rem) {
+  .hero,
+  .thing__inner {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .hero__site {
+    margin-bottom: 2rem;
+  }
+
+  .thing p {
+    padding-top: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .rings circle {
+    animation: none;
+  }
+}
